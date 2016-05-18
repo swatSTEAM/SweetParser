@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+      <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+  <div id="loginModal" class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">You need to login</h3>
+      </div>
+      <div class="modal-body">
+          <a href="{{ url_for('login') }}" type="button" class="btn btn-default" role="button">Login w/ twitter</a>
+          <button id="adminButt" type="button" class="btn btn-default" role="button">Login as admin</button>
+          <form id="adminForm" method="post" class="input-group" style="display: none">
+              <input type="password" class="form-control" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+              <span class="input-group-btn">
+               <input class="btn btn-secondary" type="submit" value="Login">
+              </span>
+          </form>
+          {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+          {% endif %}
+      </div>
+{#        <div class="input-group">#}
+{#            <span class="input-group-addon" id="basic-addon1">PASSWORD</span>#}
+
+{#        </div>#}
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  <script src="{{ url_for('static', filename='login.js') }}"></script>
+  </body>

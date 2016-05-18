@@ -1,0 +1,28 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.modal-dialog {
+	margin-top: 130px;
+}
+
+
+.modal-body, .modal-header {
+    text-align: center;
+}
+
+/*.modal-body {*/
+    /*margin: 10px;*/
+/*}*/
+
+.modal-header {
+    /*margin: 20px;*/
+}
+
+.input-group, .progress, h2, h3 {
+    margin: 10px;
+}
+
+#twiCountText {
+    padding-bottom: 20px;
+}

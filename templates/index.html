@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>@{{ username }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery.js"></script>
+{#    <!-- Bootstrap -->#}
+{#    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">#}
+      <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <script>
+        var username = "{{ username }}";
+    </script>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <p class="navbar-text" style="padding-left: 10px">
+                   Signed in as @{{ username }}
+              </p>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
+          </ul>
+          </div>
+      </div>
+    </nav>
+
+{#  <div id="loginModal" class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog">#}
+  <div class="modal-dialog">
+
+    <div class="modal-content index-modal-content ">
+      <div class="modal-header">
+        <h2 class="modal-title">Input the nickname of a user:</h2>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">@</span>
+            <input id="inputUser" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"
+            data-toggle="popover" data-content="" data-placement="top">
+        </div>
+         <button id="getStats" type="button" class="btn btn-default">Get stats!</button>
+      </div>
+    </div><!-- /.modal-content -->
+
+      <div class="modal-content progress-modal-content" style="display: none">
+                <div class="modal-header">
+                    <h2 class="modal-title">Getting tweets, please wait...</h2>
+                </div>
+                <div class="modal-body">
+                    <h3 id="twiCountText">Tweets got: <span id="twiCount">0</span></h3>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+        </div>
+{#      </div><!-- /.modal-dialog -->#}
+</div><!-- /.modal -->
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>

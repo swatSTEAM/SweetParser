@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>@{{ username }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-default">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <p class="navbar-text" style="padding-left: 10px">
+                  Analysis of the @{{ username }}
+              </p>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('index') }}"><span class="glyphicon glyphicon-user"></span> Other user</a></li>
+                <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+
+    <div class="container">
+          <h2>Frequency analysis for last {{ tweet_count }} tweets of @{{ username }}</h2>
+          <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Word</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for word, k in words %}
+          <tr>
+            <td>{{ word }}</td>
+            <td>{{ k }}</td>
+          </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+
+    <h2>Topics</h2>
+          <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Topic</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for num, topic in topics %}
+          <tr>
+            <td>{{ num }}</td>
+            <td>{{ topic }}</td>
+          </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+
+        <h2>Mentions to users</h2>
+          <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for men, k in mentions %}
+          <tr>
+            <td>{{ men }}</td>
+            <td>{{ k }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+        <h2>Links to sites</h2>
+          <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Site</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for site, k in urls %}
+          <tr>
+            <td>{{ site }}</td>
+            <td>{{ k }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+        <h2>Emoticons</h2>
+          <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Emote</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for emo, k in emos %}
+          <tr>
+            <td>{{ emo }}</td>
+            <td>{{ k }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+        <h2>Statistic: </h2>
+        <h3>literariness: {{statistic['literariness']}}%</h3>
+        <h3>Mentions: {{statistic['mentions']}}%</h3>
+        <h3>Words per tweet: {{statistic['words']}}</h3>
+        <h3>Chars per tweet: {{statistic['chars']}}</h3>
+        <h3>Retweets: {{statistic['retweets']}}%</h3>
+    </div>
+  </body>
+</html>
